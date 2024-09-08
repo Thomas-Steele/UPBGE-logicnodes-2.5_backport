@@ -6,14 +6,17 @@ from mathutils import Euler, Vector
 SYSTEM = None
 
 
+ ### Logic Nodes 2.8+ Implementation = DISTANCE_MODEL_EXPONENT
+ ### Logic Nodes 2.79 Implementation = AUD_DISTANCE_MODEL_EXPONENT
+ ### etc, etc
 DISTANCE_MODELS = {
-    'EXPONENT': aud.DISTANCE_MODEL_EXPONENT,
-    'EXPONENT_CLAMPED': aud.DISTANCE_MODEL_EXPONENT_CLAMPED,
-    'INVERSE': aud.DISTANCE_MODEL_INVERSE,
-    'INVERSE_CLAMPED': aud.DISTANCE_MODEL_INVERSE_CLAMPED,
-    'LINEAR': aud.DISTANCE_MODEL_LINEAR,
-    'LINEAR_CLAMPED': aud.DISTANCE_MODEL_LINEAR_CLAMPED,
-    'NONE': aud.DISTANCE_MODEL_INVALID
+    'EXPONENT': aud.AUD_DISTANCE_MODEL_EXPONENT,
+    'EXPONENT_CLAMPED': aud.AUD_DISTANCE_MODEL_EXPONENT_CLAMPED,
+    'INVERSE': aud.AUD_DISTANCE_MODEL_INVERSE,
+    'INVERSE_CLAMPED': aud.AUD_DISTANCE_MODEL_INVERSE_CLAMPED,
+    'LINEAR': aud.AUD_DISTANCE_MODEL_LINEAR,
+    'LINEAR_CLAMPED': aud.AUD_DISTANCE_MODEL_LINEAR_CLAMPED,
+    'NONE': aud.AUD_DISTANCE_MODEL_INVALID
 }
 
 
@@ -390,7 +393,8 @@ class NLSound3D(NLSound):
         reverb=False,
         attenuation: float = 1,
         distance_ref: float = 1,
-        cone_angle: list[float] = [360, 360],
+        #cone_angle: list[float] = [360, 360], ### Logic Nodes 2.8+ Implementation : type[type] seems to be newer python type-hinting syntax
+        cone_angle = [360, 360],               ### Logic Nodes 2.79 Implementation : Default value set without type-hint
         cone_outer_volume: float = 0,
         aud_sys: str = 'default'
     ):
