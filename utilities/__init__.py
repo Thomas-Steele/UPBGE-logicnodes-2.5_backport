@@ -545,4 +545,5 @@ def key_event(ks):
 
 
 def preferences() -> LogicNodesAddonPreferences:
-    return bpy.context.preferences.addons['bge_netlogic'].preferences
+    #return bpy.context.preferences.addons['bge_netlogic'].preferences     ### Logic Nodes 2.8+ Implementation 
+    return bpy.context.user_preferences.addons['bge_netlogic'].preferences ### Logic Nodes 2.79 Implementation 
