@@ -11,13 +11,13 @@ from .actions.drawbox import LogicNodeDrawBox
 from .actions.drawcube import LogicNodeDrawCube
 from .actions.drawline import LogicNodeDrawLine
 from .actions.removefilter import LogicNodeRemoveFilter
-from .actions.removeoverlaycollection import LogicNodeRemoveOverlayCollection
+#from .actions.removeoverlaycollection import LogicNodeRemoveOverlayCollection ### Logic Nodes 2.8+ Implementation
 from .actions.runactuator import LogicNodeRunActuator  # deprecated
 from .actions.runpython import LogicNodeRunPython
 from .actions.setactuatorvalue import LogicNodeSetActuatorValue
 from .actions.setcustomcursor import LogicNodeSetCustomCursor
 from .actions.setfilterstate import LogicNodeSetFilterState
-from .actions.setoverlaycollection import LogicNodeSetOverlayCollection
+#from .actions.setoverlaycollection import LogicNodeSetOverlayCollection ### Logic Nodes 2.8+ Implementation
 from .actions.setsensorvalue import LogicNodeSetSensorValue
 from .actions.setsmaaquailty import LogicNodeSetSMAAQuality  # deprecated
 from .actions.setuiwidgetattr import LogicNodeSetUIWidgetAttr
@@ -32,9 +32,9 @@ from .actions.localserver import LogicNodeLocalServer
 from .actions.localclient import LogicNodeLocalClient
 from .actions.sendnetworkmessage import LogicNodeSendNetworkMessage
 from .actions.setproperty import LogicNodeSetProperty
-from .actions.setgeometrysocket import LogicNodeSetGeometrySocket
+#from .actions.setgeometrysocket import LogicNodeSetGeometrySocket ### Logic Nodes 2.8+ Implementation
 from .actions.setnodegroupsocket import LogicNodeSetNodeGroupSocket
-from .actions.setgeometrynodeproperty import LogicNodeSetGeometryNodeProperty
+#from .actions.setgeometrynodeproperty import LogicNodeSetGeometryNodeProperty ### Logic Nodes 2.8+ Implementation
 from .actions.setnodegroupnodeproperty import LogicNodeSetNodeGroupNodeProperty
 from .actions.setmaterial import LogicNodeSetMaterial
 from .actions.setmaterialnodeproperty import LogicNodeSetMaterialNodeProperty
@@ -56,7 +56,7 @@ from .actions.raycastprojectile import LogicNodeRaycastProjectile
 from .actions.startlogictree import LogicNodeStartLogicTree
 from .actions.stoplogictree import LogicNodeStopLogicTree
 from .actions.setobjectvisibility import LogicNodeSetObjectVisibility
-from .actions.setcollectionvisibility import LogicNodeSetCollectionVisibility
+#from .actions.setcollectionvisibility import LogicNodeSetCollectionVisibility ### Logic Nodes 2.8+ Implementation
 from .actions.setcurvepoints import LogicNodeSetCurvePoints
 from .actions.sendobjectmessage import LogicNodeSendObjectMessage
 from .actions.setcamera import LogicNodeSetCamera
@@ -234,14 +234,14 @@ from .parameters.gamepadsticks import LogicNodeGamepadSticks
 from .parameters.gamepadtrigger import LogicNodeGamepadTrigger
 from .parameters.getactuatorvalue import LogicNodeGetActuatorValue
 from .parameters.getaxisvector import LogicNodeGetAxisVector
-from .parameters.getcollection import LogicNodeGetGetCollection
-from .parameters.getcollectionobjectnames import LogicNodeGetCollectionObjectNames
-from .parameters.getcollectionobjects import LogicNodeGetCollectionObjects
+#from .parameters.getcollection import LogicNodeGetGetCollection                    ### Logic Nodes 2.8+ Implementation
+#from .parameters.getcollectionobjectnames import LogicNodeGetCollectionObjectNames ### Logic Nodes 2.8+ Implementation
+#from .parameters.getcollectionobjects import LogicNodeGetCollectionObjects         ### Logic Nodes 2.8+ Implementation
 from .parameters.getcurvepoints import LogicNodeGetCurvePoints
 from .parameters.getfont import LogicNodeGetFont
 from .parameters.getfullscreen import LogicNodeGetFullscreen
-from .parameters.getgeonodeattr import LogicNodeGetGeoNodeAttr
-from .parameters.getgeonodesocket import LogicNodeGetGeoNodeSocket
+#from .parameters.getgeonodeattr import LogicNodeGetGeoNodeAttr     ### Logic Nodes 2.8+ Implementation
+#from .parameters.getgeonodesocket import LogicNodeGetGeoNodeSocket ### Logic Nodes 2.8+ Implementation
 from .parameters.getglobalvalue import LogicNodeGetGlobalValue
 from .parameters.getgravity import LogicNodeGetGravity
 from .parameters.getgroupnodeattr import LogicNodeGroupNodeAttr
