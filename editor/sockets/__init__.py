@@ -9,7 +9,7 @@ from .bonesocket import NodeSocketLogicBone
 from .boolcondition import NodeSocketLogicBoolCondition  # deprecated
 from .booleansocket import NodeSocketLogicBoolean
 from .camerasocket import NodeSocketLogicCamera
-from .collectionsocket import NodeSocketLogicCollection
+#from .collectionsocket import NodeSocketLogicCollection ### Logic Nodes 2.8+ Implementation
 from .colorrgbasocket import NodeSocketLogicColorRGBA
 from .colorrgbsocket import NodeSocketLogicColorRGB
 from .conditionsocket import NodeSocketLogicCondition
@@ -22,7 +22,7 @@ from .floatpositivesocket import NodeSocketLogicFloatPositive
 from .floatsocket import NodeSocketLogicFloat
 from .fontsocket import NodeSocketLogicFont
 from .gamepropertysocket import NodeSocketLogicGameProperty
-from .geometrynodetreesocket import NodeSocketLogicGeometryNodeTree
+#from .geometrynodetreesocket import NodeSocketLogicGeometryNodeTree ### Logic Nodes 2.8+ Implementation
 from .globalcategorysocket import NodeSocketLogicGlobalCategory
 from .globalpropertysocket import NodeSocketLogicGlobalProperty
 from .imagesocket import NodeSocketLogicImage
