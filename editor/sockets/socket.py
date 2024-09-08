@@ -5,7 +5,11 @@ from bpy.props import BoolProperty
 from bpy.props import StringProperty
 from bpy.types import NodeLink
 from bpy.types import NodeSocket
-from bpy.types import NodeTreeInterfaceSocket
+
+# Iza Zed ; Is this a direct replacement?
+#from bpy.types import NodeTreeInterfaceSocket ### Logic Nodes 2.8+ Implementation
+from bpy.types import NodeSocketInterface      ### Logic Nodes 2.79 Implementation
+
 from bpy.types import NodeSocketVirtual
 from bpy.types import NodeReroute
 import bpy
@@ -111,7 +115,7 @@ _sockets = []
 
 def socket_type(obj):
 
-    class Interface(NodeTreeInterfaceSocket, obj):
+    class Interface(NodeSocketInterface, obj):
         bl_socket_idname = obj.bl_idname
         nl_socket = obj
         hide_value = True
@@ -124,11 +128,17 @@ def socket_type(obj):
         def draw(self, context, layout):
             layout.prop(self, 'value')
 
-        # def draw_color(self, context):
-        #     return self.nl_socket.nl_color if self.nl_socket.nl_color else SOCKET_COLOR_GENERIC
+        ### Logic Nodes 2.79 Implementation
+        def draw_color(self, context):
+            return self.nl_socket.nl_color if self.nl_socket.nl_color else SOCKET_COLOR_GENERIC
 
-    _sockets.append(obj)
+    ### Logic Nodes 2.8+ Implementation
+    #_sockets.append(obj)
+    #_sockets.append(Interface)
+    
+    ### Logic Nodes 2.79 Implementation
     _sockets.append(Interface)
+    _sockets.append(obj)
     return obj
 
 
@@ -206,9 +216,13 @@ class NodeSocketLogic:
                 self.node.use_custom_color = True
                 self.node.color = (.8, .6, 0)
 
-    @classmethod
-    def draw_color_simple(cls):
-        return cls.nl_color
+    #@classmethod
+    #def draw_color_simple(cls):
+    #    return cls.nl_color
+
+    ### Logic Nodes 2.79 Implementation
+    def draw_color(self, context, node):
+            return self.nl_socket.nl_color if self.nl_socket.nl_color else SOCKET_COLOR_GENERIC
 
     @classmethod
     def draw_interface(cls, context, layout):
@@ -258,6 +272,10 @@ class NodeSocketLogicVirtual(NodeSocketVirtual, NodeSocketLogic):
 
     def draw(self, context, a, b, c):
         pass
+    
+    ### Logic Nodes 2.79 Implementation
+    def draw_color(self, context, node):
+            return self.nl_socket.nl_color if self.nl_socket.nl_color else SOCKET_COLOR_GENERIC
 
     def on_validate(self, link, nodetree):
         nodetree.inputs.new(link.to_socket.bl_idname, link.to_socket.name)
