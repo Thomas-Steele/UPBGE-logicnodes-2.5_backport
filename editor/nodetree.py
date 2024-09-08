@@ -18,7 +18,8 @@ from time import time
 class LogicNodeTree(NodeTree):
     bl_idname = "BGELogicTree"
     bl_label = "Logic Node Editor"
-    bl_icon = "OUTLINER"
+    #bl_icon = "OUTLINER"                       ### Logic Nodes 2.8+ Implementation
+    bl_icon = "PLUS" # TODO : FIND A REAL ICON  ### Logic Nodes 2.79 Implementation
     bl_category = "Scripting"
 
     def group_update(self, context: Context) -> None:
