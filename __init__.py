@@ -18,7 +18,8 @@ from .props.propertyfilter import LogicNodesPropertyFilter
 from .props.globalcategory import LogicNodesGlobalCategory
 from .props.customnode import _registered_custom_classes
 from .preferences import LogicNodesAddonPreferences
-from .utilities import preferences as prefs
+#from .utilities import preferences as prefs     ### Logic Nodes 2.8+ Implementation
+from .utilities import preferences as prefs      ### Logic Nodes 2.79 Implementation
 from .editor.nodetree import LogicNodeTree
 # from . import basicnodes
 from . import utilities as utils
@@ -35,7 +36,8 @@ bl_info = {
     ),
     "author": "pgi, Leopold A-C (Iza Zed)",
     "version": (3, 2, 1),
-    "blender": (4, 1, 0),
+    #"blender": (4, 1, 0), ### Logic Nodes 2.8+ Implementation
+    "blender": (2, 7, 0),  ### Logic Nodes 2.79 Implementation
     "location": "View Menu",
     "category": "Game Engine",
     "wiki_url": "https://upbge.org/#/documentation/docs/latest/manual/manual/logic_nodes/index.html",
@@ -317,6 +319,23 @@ def _get_key_for_class(c):
 _registered_classes = sorted(_registered_classes, key=_get_key_for_class)
 
 
+### - TESTING PHANTOM POPULATION OF _registered_classes LIST - ###
+
+#import os
+#os.system("cls")
+#print ("\n");
+#for _class in _registered_classes:
+#    print (_class);
+#
+#raise AssertionError
+
+### - TESTING PHANTOM POPULATION OF _registered_classes LIST - ###
+
+# Cause: If I remember correctly, classes that did not error would be registered, and remain registered.
+#        When the user attempts to enable the addon in the same UPBGE.exe instance that error'd, the 
+#        already registered, non-error-ing classes would error as "already registered"
+
+
 # Create the menu items that allow the user to add nodes to a tree
 
 
@@ -368,7 +387,9 @@ def register():
     bpy.app.handlers.game_pre.append(_reload_texts)
     bpy.app.handlers.load_post.append(_update_properties)
 
-    bpy.app.handlers.depsgraph_update_post.append(_watch_tree_names)
+    #bpy.app.handlers.depsgraph_update_post.append(_watch_tree_names) ### Logic Nodes 2.8+ Implementation
+    # Iza Zed ; Should this be bpy.app.handlers.frame_change_post ?
+    
     for cls in _registered_classes:
         bpy.utils.register_class(cls)
 
@@ -377,6 +398,12 @@ def register():
     bpy.utils.register_class(CustomNodeReference)
     bpy.utils.register_class(LogicNodesAddonPreferences)
 
+    
+    for addon in bpy.context.user_preferences.addons: # {
+        print (addon);
+    # }
+    
+    
     prefs().uplogic_version = 'latest'
     for node in prefs().custom_logic_nodes:
         exec(node.ui_code, {"bge_netlogic": _get_this_module()})
@@ -447,7 +474,7 @@ def unregister():
     utils.debug('Removing Game Start Compile handler...')
     remove_f = []
     filter(lambda a: a.__name__ == '_generate_on_game_start', bpy.app.handlers.game_pre)
-    filter(lambda a: a.__name__ == '_watch_tree_names', bpy.app.handlers.depsgraph_update_post)
+    #filter(lambda a: a.__name__ == '_watch_tree_names', bpy.app.handlers.depsgraph_update_post) ### Logic Nodes 2.8+ Implementation
     filter(lambda a: a.__name__ == '_reload_texts', bpy.app.handlers.game_pre)
     filter(lambda a: a.__name__ == '_update_properties', bpy.app.handlers.load_post)
     for f in bpy.app.handlers.game_pre:
